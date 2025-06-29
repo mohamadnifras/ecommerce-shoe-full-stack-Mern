@@ -1,0 +1,29 @@
+/* 
+body {
+  background-color: hsl(220, 100%, 97%);
+  
+} */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* Horizontal scrollbar height */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Tailwind gray-200 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 4px;
+}
