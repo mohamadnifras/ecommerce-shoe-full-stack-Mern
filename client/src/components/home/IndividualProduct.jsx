@@ -6,6 +6,7 @@ import { CornerUpLeft } from "lucide-react";
 import DetailIndividual from "./DetailIndividual";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Footer from "./Footer";
 
 function IndividualProduct() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ function IndividualProduct() {
   const displayedImages = showAllImages ? images : images.slice(0, 4);
 
   return (
+    <>
     <div className="relative top-23 flex flex-col md:flex-row tracking-wider px-2">
       {/* Left section - Images */}
       <div className="w-full md:w-[1344px]">
@@ -36,15 +38,15 @@ function IndividualProduct() {
           <button
             onClick={() => navigate(-1)}
             className="absolute flex items-center space-x-1 text-black underline text-[18px] left-3 top-5 font-bold cursor-pointer hover:text-orange-400"
-          >
+            >
             <CornerUpLeft size={17} />
             <span>Back</span>
           </button>
 
           {images.length > 4 && (
             <button
-              onClick={() => setShowAllImages(!showAllImages)}
-              className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 px-10 py-3 border-2 bg-[#FFFFFF] font-bold text-black text-[18px] cursor-pointer"
+            onClick={() => setShowAllImages(!showAllImages)}
+            className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 px-10 py-3 border-2 bg-[#FFFFFF] font-bold text-black text-[18px] cursor-pointer"
             >
               {showAllImages ? "Show Less" : "Show More"}
             </button>
@@ -60,7 +62,7 @@ function IndividualProduct() {
                   src={img}
                   alt={`product-mobile-${idx}`}
                   className="w-full h-[250px] object-cover rounded-lg"
-                />
+                  />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -68,7 +70,7 @@ function IndividualProduct() {
           <button
             onClick={() => navigate(-1)}
             className="flex items-center gap-1 text-black underline text-[16px] font-bold mt-2 hover:text-orange-400"
-          >
+            >
             <CornerUpLeft size={17} />
             <span>Back</span>
           </button>
@@ -79,7 +81,9 @@ function IndividualProduct() {
       <div className="w-full md:w-[567px] mt-5 md:mt-0">
         <DetailIndividual product={product} />
       </div>
+      
     </div>
+            </>
   );
 }
 

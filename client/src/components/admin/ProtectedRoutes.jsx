@@ -1,11 +1,15 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 function ProtectedRoutes() {
- 
-  const admin = localStorage.getItem('role'); 
+  const location = useLocation();
+  const admin = localStorage.getItem("role");
 
-  return admin ? <Outlet /> : <Navigate to="/login" />;
+  // Prevent redirect loop
+  if (!admin && location.pathname !== "/login") {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <Outlet />;
 }
-
 export default ProtectedRoutes;
