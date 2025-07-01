@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { fetchUserDetails } from "../../features/authSlice";
 import HeroSection from "./HeroSection";
 import AllProduct from "./AllProduct";
+import Footer from "./Footer";
 // import Navbar from "./Navbar";
 
 
@@ -23,11 +24,13 @@ function HomePage({searchTerm}) {
         <>
           <AllProduct searchTerm={searchTerm} />
           <HeroSection />
+          <Footer />
         </>
       ) : (
         <>
           <HeroSection />
           <AllProduct searchTerm={searchTerm} />
+          <Footer />
         </>
       )}
     </div>

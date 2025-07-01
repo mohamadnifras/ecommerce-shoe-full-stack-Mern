@@ -24,7 +24,7 @@ function CartFooter() {
 
         {/* Third row */}
         <div className="flex justify-center items-center pt-3 text-gray-500 text-center">
-          <p>© 2025 adidas India Marketing Private Limited</p>
+          <p>&copy; {new Date().getFullYear()} India Marketing Private Limited</p>
         </div>
       </div>
     </footer>
