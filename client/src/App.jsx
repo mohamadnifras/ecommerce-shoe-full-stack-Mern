@@ -110,9 +110,9 @@ function App() {
         <Route path="/women" element={<WomenProduct />} />
         <Route path="/kids" element={<KindsProduct />} />
 
+        <Route path="/adminmain" element={<Navigate to="/admin/dashboard" />} />
         {/* Admin Side */}
         <Route element={<ProtectedRoutes />}>
-        <Route path="/adminmain" element={<Navigate to="/admin/dashboard" />} />
         <Route path="/admin/*" element={<AdminPage />}>
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
