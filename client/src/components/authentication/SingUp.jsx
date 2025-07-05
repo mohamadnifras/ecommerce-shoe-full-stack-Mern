@@ -26,23 +26,27 @@ function SignUp() {
 
   const handleSubmit = async (values) => {
     try {
-      await dispatch(registerUser(values)).unwrap().then((response) => {
-        navigate("/login");
-        toast.success(response.message)
-      });
+      await dispatch(registerUser(values))
+        .unwrap()
+        .then((response) => {
+          navigate("/login");
+          toast.success(response?.data?.message || "Registered Successfully");
+        });
     } catch (error) {
-      toast.error(error)
-      
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Something went wrong";
+      toast.error(errorMessage);
     }
   };
-
-  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('/signup.jpeg')]  bg-cover bg-center  bg-no-repeat px-4 sm:px-6">
       <div className="w-full max-w-md bg-transparent shadow-xl rounded-lg p-8 border-2  border-white/50 backdrop-blur-xl">
-        <h2 className="text-3xl font-bold text-center mb-6 text-white">Sign Up</h2>
- 
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">
+          Sign Up
+        </h2>
 
         <Formik
           initialValues={{
@@ -62,13 +66,12 @@ function SignUp() {
                 placeholder="Username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-amber-50"
               />
-         
+
               <ErrorMessage
                 name="username"
                 component="div"
                 className="text-red-500 text-sm mt-1"
               />
-           
             </div>
 
             <div>
@@ -129,7 +132,7 @@ function SignUp() {
           </a>
         </p>
       </div>
-       <ToastContainer position="top-center" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }
