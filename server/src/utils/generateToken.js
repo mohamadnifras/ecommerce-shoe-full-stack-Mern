@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 //Generate access token
 const generateAccessToken = (user) => {
     const payload = { id: user.id, email: user.email, role: user.role }
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '3d' });
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5m' });
 }
 
 //Generate refresh token
@@ -16,4 +16,4 @@ const generateRefreshToken = (user) => {
 
 
 
-module.exports = { generateAccessToken, generateRefreshToken};
+module.exports = { generateAccessToken, generateRefreshToken };

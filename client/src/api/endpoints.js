@@ -4,7 +4,7 @@ export const endPoints = {
         LOGIN: "/user/login",
         ME: "/user/me",
         LOGOUT: "/user/logout",
-        REFRESH_TOKEN: "/refresh-token",
+        REFRESH_TOKEN: "/user/refresh-token",
 
     },
     PRODUCT: {

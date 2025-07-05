@@ -2,6 +2,10 @@ const { userRegisterServices, userLoginServices, getUserDetails, logoutUserServi
 const asyncHandler = require('../middlewares/asyncHandler')
 const { registerValidation, loginValidatin } = require('../utils/validators')
 const CustomError = require('../utils/customError')
+const {generateAccessToken} = require("../utils/generateToken.js")
+const jwt = require('jsonwebtoken')
+
+
 
 // registerUser
 exports.registerUser = asyncHandler(async (req, res) => {
@@ -28,7 +32,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: 'None',
-        maxAge: 3 * 24 * 60 * 60 * 1000, //3days
+        maxAge: 5 * 60  * 1000, //5 minutese
     });
 
     res.cookie('refreshToken', refreshToken, {
@@ -75,14 +79,13 @@ exports.logoutUser = asyncHandler(async (req, res) => {
 
 exports.refreshAccessToken = asyncHandler(async (req, res) => {
   const { refreshToken } = req.cookies;
-
   if (!refreshToken) {
     throw new CustomError('Refresh token not found', 401);
   }
 
   try {
     // Verify the refresh token
-    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);   
+    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);   
 
     const newAccessToken = generateAccessToken({ id: decoded.id, role: decoded.role, email: decoded.email});
 
@@ -91,8 +94,9 @@ exports.refreshAccessToken = asyncHandler(async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      maxAge: 5 * 60 * 1000,
+      maxAge: 5 * 60  * 1000, //5 minutese
     });
+    console.log(newAccessToken,"newAccessToken")
 
     res.status(200).json({ message: 'Token refreshed successfully' });
   } catch (err) {

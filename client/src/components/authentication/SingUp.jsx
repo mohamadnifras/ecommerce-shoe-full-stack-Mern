@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../features/authSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -27,11 +29,13 @@ function SignUp() {
       await dispatch(registerUser(values)).unwrap().then((response) => {
         console.log(response, "nifras");
         navigate("/login");
-        alert("Registration successful!");
+        
+        toast.success(response.message)
       });
     } catch (error) {
       console.log(error);
-      alert(error);
+      toast.error(error)
+      
     }
   };
 

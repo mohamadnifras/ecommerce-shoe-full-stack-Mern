@@ -116,7 +116,7 @@ axiosInstance.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                await axiosInstance.post("/refresh-token");
+                await axiosInstance.post("/user/refresh-token");
 
                 // Retry the original request after refreshing the token
                 isRefreshing = false;
