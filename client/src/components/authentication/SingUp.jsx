@@ -27,13 +27,10 @@ function SignUp() {
   const handleSubmit = async (values) => {
     try {
       await dispatch(registerUser(values)).unwrap().then((response) => {
-        console.log(response, "nifras");
         navigate("/login");
-        
         toast.success(response.message)
       });
     } catch (error) {
-      console.log(error);
       toast.error(error)
       
     }
