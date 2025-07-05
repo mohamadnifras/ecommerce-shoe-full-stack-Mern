@@ -175,7 +175,6 @@ function App() {
     "/man",
     "/women",
     "/kids",
-    "/admin",
     "/admin/dashboard",
     "/admin/products",
     "/admin/users",
@@ -209,14 +208,11 @@ function App() {
         <Route path="/kids" element={<KindsProduct />} />
 
         {/* Admin Routes */}
-        <Route element={<ProtectedRoutes />}>
-          {/* Redirect only if not already on dashboard */}
-           <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="/admin/*" element={<AdminPage />}>
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path="users" element={<AdminUserDetails />} />
-          </Route>
+       <Route path="/admin/*" element={<ProtectedRoutes />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="users" element={<AdminUserDetails />} />
         </Route>
 
         {/* 404 Not Found */}
