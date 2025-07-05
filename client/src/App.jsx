@@ -21,7 +21,7 @@
 //   const [searchTerm, setSearchTerm] = useState("")
 //   const location = useLocation();
 //   const hideNavbarPaths = ["/login", "/signup", "/order",];
-  
+
 //   return (
 //     <>
 //       {!hideNavbarPaths.includes(location.pathname) && !location.pathname.startsWith("/admin") && (
@@ -53,13 +53,6 @@
 // }
 
 // export default App;
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import "./App.css";
@@ -136,14 +129,15 @@
 
 // export default App;
 
-
-
-
-
-
 import React, { useState } from "react";
 import "./App.css";
-import { Route, Routes, useLocation, Navigate, matchPath } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+  matchPath,
+} from "react-router-dom";
 
 import SingUp from "./components/authentication/SingUp";
 import Login from "./components/authentication/Login";
@@ -171,9 +165,20 @@ function App() {
   const isAdminPath = location.pathname.startsWith("/admin");
 
   const knownPaths = [
-    "/", "/signup", "/login", "/product/:id", "/cart", "/order", "/ordercard",
-    "/man", "/women", "/kids",
-    "/adminmain", "/admin/dashboard", "/admin/products", "/admin/users"
+    "/",
+    "/signup",
+    "/login",
+    "/product/:id",
+    "/cart",
+    "/order",
+    "/ordercard",
+    "/man",
+    "/women",
+    "/kids",
+    "/adminmain",
+    "/admin/dashboard",
+    "/admin/products",
+    "/admin/users",
   ];
 
   const isKnownPath = knownPaths.some((path) =>
@@ -206,14 +211,7 @@ function App() {
         {/* Admin Routes */}
         <Route element={<ProtectedRoutes />}>
           {/* Redirect only if not already on dashboard */}
-          <Route
-            path="/adminmain"
-            element={
-              location.pathname === "/adminmain" ? (
-                <Navigate to="/admin/dashboard" replace />
-              ) : null
-            }
-          />
+           <Route path="/adminmain" element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="/admin/*" element={<AdminPage />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
