@@ -25,12 +25,12 @@ function Cart() {
       </div>
     );
 
-  if (error)
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-red-500 text-xl">Error: {error}</p>
-      </div>
-    );
+  // if (error)
+  //   return (
+  //     <div className="flex items-center justify-center h-screen">
+  //       <p className="text-red-500 text-xl">Error: {error}</p>
+  //     </div>
+  //   );
 
   return (
     <div className="pt-20 tracking-wider w-full h-full flex flex-col justify-between">
