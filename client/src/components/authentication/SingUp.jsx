@@ -129,6 +129,7 @@ function SignUp() {
           </a>
         </p>
       </div>
+       <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }
