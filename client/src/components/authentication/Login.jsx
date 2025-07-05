@@ -55,7 +55,7 @@ function Login() {
       if (user.role === "user" && isAuthenticated) {
         navigate("/");
       } else if (user.role === "admin" && adminAuthenticated) {
-        navigate("/admin/dashboard");
+        navigate("/adminmain");
       }
     }
   },[user, error, navigate, isAuthenticated, adminAuthenticated]);
