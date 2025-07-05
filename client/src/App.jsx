@@ -175,7 +175,7 @@ function App() {
     "/man",
     "/women",
     "/kids",
-    "/adminmain",
+    "/admin",
     "/admin/dashboard",
     "/admin/products",
     "/admin/users",
@@ -211,7 +211,7 @@ function App() {
         {/* Admin Routes */}
         <Route element={<ProtectedRoutes />}>
           {/* Redirect only if not already on dashboard */}
-           <Route path="/adminmain" element={<Navigate to="/admin/dashboard" replace />} />
+           <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="/admin/*" element={<AdminPage />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
