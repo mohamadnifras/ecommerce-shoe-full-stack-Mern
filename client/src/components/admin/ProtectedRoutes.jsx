@@ -1,7 +1,7 @@
-// import React from "react";
-// import { Navigate, Outlet, useLocation } from "react-router-dom";
+import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-// function ProtectedRoutes() {
+function ProtectedRoutes() {
 //   const location = useLocation();
 //   const admin = localStorage.getItem("role");
 
@@ -12,13 +12,7 @@
 
 //   return <Outlet />;
 // }
-// export default ProtectedRoutes;
 
-
-import React from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-
-function ProtectedRoutes() {
   const location = useLocation();
   const role = localStorage.getItem("role"); // E.g., 'admin' or null
 
@@ -37,6 +31,7 @@ function ProtectedRoutes() {
 
   return <Outlet />;
 }
-
 export default ProtectedRoutes;
+
+
 
