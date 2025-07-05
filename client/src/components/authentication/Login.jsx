@@ -38,27 +38,50 @@ function Login() {
   });
 
 
-  const handleSubmit = async (values) => {
-    try {
-      await dispatch(loginUser(values))
-        .unwrap()
-        .then((respons) => {
-          toast.success(respons.message);
-        });
-    } catch (error) {
-      toast.error(error);
-    }
-  };
+  // const handleSubmit = async (values) => {
+  //   try {
+  //     await dispatch(loginUser(values))
+  //       .unwrap()
+  //       .then((respons) => {
+  //         toast.success(respons.message);
+  //       });
+  //   } catch (error) {
+  //     toast.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (user) {
-      if (user.role === "user" && isAuthenticated) {
-        navigate("/");
-      } else if (user.role === "admin" && adminAuthenticated) {
-        navigate("/admin/dashboard");
-      }
+  // useEffect(() => {
+  //   if (user) {
+  //     if (user.role === "user" && isAuthenticated) {
+  //       navigate("/");
+  //     } else if (user.role === "admin" && adminAuthenticated) {
+  //       navigate("/admin/dashboard");
+  //     }
+  //   }
+  // },[user, error, navigate, isAuthenticated, adminAuthenticated]);
+  const handleSubmit = async (values) => {
+  try {
+    const response = await dispatch(loginUser(values)).unwrap();
+    toast.success(response.message);
+    
+    // Optionally set role in localStorage (used in ProtectedRoutes)
+    localStorage.setItem("role", response.role);
+
+  } catch (error) {
+    toast.error(error.message || "Login failed");
+  }
+};
+
+useEffect(() => {
+  if (user && isAuthenticated) {
+    if (user.role === "admin" && adminAuthenticated) {
+      navigate("/admin/dashboard");
+    } else if (user.role === "user") {
+      navigate("/");
     }
-  },[user, error, navigate, isAuthenticated, adminAuthenticated]);
+  }
+}, [user, isAuthenticated, adminAuthenticated, navigate]);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-[#FFBB2C] flex items-center justify-center px-4">
