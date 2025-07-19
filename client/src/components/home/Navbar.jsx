@@ -8,10 +8,8 @@ import { getCart } from "../../features/cartSlice";
 function Navbar({ searchTerm, setSearchTerm }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   console.log("Searching for:", searchTerm);
-  // };
+  const {user} = useSelector( (state) => state.auth)
+
     const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -74,6 +72,8 @@ function Navbar({ searchTerm, setSearchTerm }) {
             >
               KIDS
             </Link>
+            {user&&(
+              <>
             <Link to="/ordercard" className="hover:text-red-600">
               <ShoppingBag />
             </Link>
@@ -85,6 +85,8 @@ function Navbar({ searchTerm, setSearchTerm }) {
                 </span>
               )}
             </Link>
+              </>
+            )}
             <LoginAndLogout />
           </div>
 
@@ -93,7 +95,8 @@ function Navbar({ searchTerm, setSearchTerm }) {
             <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X size={24} /> : <Search size={24} />}
             </button>
-
+          {user&&(
+            <>
             <Link to="/cart" className="relative">
               <ShoppingCart size={24} />
               {Array.isArray(cart?.items) && cart.items.length > 0 && (
@@ -102,6 +105,8 @@ function Navbar({ searchTerm, setSearchTerm }) {
                 </span>
               )}
             </Link>
+            </>
+          )}
 
             <LoginAndLogout />
           </div>

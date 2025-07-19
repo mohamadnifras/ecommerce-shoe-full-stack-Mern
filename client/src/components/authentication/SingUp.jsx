@@ -17,7 +17,7 @@ function SignUp() {
       .email("Invalid email address")
       .required("Email Required"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
+      .min(8, "Password must be at least 8 characters")
       .required("Password Required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords Must Match")
@@ -33,11 +33,7 @@ function SignUp() {
           toast.success(response?.data?.message || "Registered Successfully");
         });
     } catch (error) {
-      const errorMessage =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong";
-      toast.error(errorMessage);
+      toast.error(error);
     }
   };
 

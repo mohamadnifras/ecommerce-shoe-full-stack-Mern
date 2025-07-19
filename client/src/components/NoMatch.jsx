@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const NoMatch = () => {
   return (
+    <>
     <StyledWrapper>
       <div className="main_wrapper">
         <div className="main">
@@ -65,6 +66,9 @@ const NoMatch = () => {
         </div>
       </div>
     </StyledWrapper>
+    
+
+    </>
   );
 }
 
